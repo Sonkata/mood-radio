@@ -1,0 +1,145 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  min-height: 100vh;
+  overflow: hidden;
+}
+#app {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+#gif-container {
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+#mood-gif {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+#interface {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 40px;
+  padding-right: 20px;
+  padding-bottom: 50px;
+  padding-left: 20px;
+  color: white;
+  text-align: center;
+}
+#bottom-interface {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#mood-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+#play-pause-btn {
+  margin-top: 14px;
+}
+#interface h1 {
+  font-family: "Pixelify Sans", sans-serif;
+  font-size: 42px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+#interface p {
+  margin-top: 6px;
+  font-family: "Pixelify Sans", sans-serif;
+  font-size: 16px;
+}
+.mood-btn {
+  width: 110px;
+  padding-top: 12px;
+  padding-right: 20px;
+  padding-bottom: 12px;
+  padding-left: 20px;
+  border: 2px solid #65708a;
+  border-radius: 12px;
+  background-color: transparent;
+  color: white;
+  font-family: "Pixelify Sans", sans-serif;
+  font-size: 18px;
+}
+#play-pause-btn {
+  margin-top: 16px;
+  width: 220px;
+  padding-top: 14px;
+  padding-right: 20px;
+  padding-bottom: 14px;
+  padding-left: 20px;
+  border: none;
+  border-radius: 25px;
+  background-color: #69afff;
+  color: #0b1630;
+  font-family: "Pixelify Sans", sans-serif;
+  font-size: 20px;
+}
+.mood-btn:hover {
+  transition: 0.2s;
+  background-color: #6db1ff;
+  border-color: white;
+  transform: translateY(-2px);
+}
+#play-pause-btn:hover {
+  transition: 0.2s;
+  background-color: #72b4ff;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 600px) {
+  #interface {
+    padding: 20px 10px 25px;
+  }
+
+  #interface h1 {
+    font-size: 22px;
+    letter-spacing: 1px;
+  }
+
+  #interface p {
+    margin-top: 5px;
+    font-size: 11px;
+  }
+
+  #mood-buttons {
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 220px;
+    gap: 8px;
+  }
+
+  .mood-btn {
+    width: 100px;
+    padding: 8px 10px;
+    font-size: 14px;
+  }
+
+  #play-pause-btn {
+    width: 200px;
+    padding: 10px;
+    font-size: 16px;
+  }
+}

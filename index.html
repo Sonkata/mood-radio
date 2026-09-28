@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mood Radio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main id="app">
+      <div id="gif-container">
+        <img
+          id="mood-gif"
+          src="assets/gif/chill.gif"
+          alt="Chill pixel art scene"
+        />
+      </div>
+      <button id="toggle-interface-btn" aria-label="Hide interface">X</button>
+      <div id="interface">
+        <div id="top-interface">
+          <h1>Mood Radio</h1>
+          <p>Ambient music for whatever you're feeling.</p>
+        </div>
+        <div id="bottom-interface">
+          <div id="mood-buttons">
+            <button class="mood-btn" data-mood="chill">Chill</button>
+            <button class="mood-btn" data-mood="hype">Hype</button>
+            <button class="mood-btn" data-mood="sad">Sad</button>
+            <button class="mood-btn" data-mood="focus">Focus</button>
+          </div>
+          <button id="play-pause-btn">▶ Play</button>
+        </div>
+      </div>
+    </main>
+    <!-- YouTube player will be created here later -->
+    <div id="yt-player"></div>
+  </body>
+</html>
