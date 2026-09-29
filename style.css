@@ -108,6 +108,13 @@ body {
   background-color: #72b4ff;
   transform: translateY(-2px);
 }
+.mood-btn.active {
+  outline: 2px solid white;
+  font-weight: bold;
+  transition: 0.2s;
+  background-color: #6db1ff;
+  transform: translateY(-4px);
+}
 
 @media (max-width: 600px) {
   #interface {
@@ -130,7 +137,13 @@ body {
     max-width: 220px;
     gap: 8px;
   }
-
+  .mood-btn.active {
+    outline: 2px solid white;
+    font-weight: bold;
+    transition: 0.2s;
+    background-color: #6db1ff;
+    transform: translateY(-4px);
+  }
   .mood-btn {
     width: 100px;
     padding: 8px 10px;
