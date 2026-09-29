@@ -12,7 +12,13 @@ function selectMood(moodName) {
     isPlaying = true;
     playPauseBtn.textContent = "⏸ Pause";
   }
+  image.style.opacity = 0;
+  setTimeout(() => {
+    image.src = moods[moodName].gif;
+    image.style.opacity = 1;
+  }, 200);
 }
+
 moodButtons.forEach((btn) => {
   btn.addEventListener("click", () => selectMood(btn.dataset.mood));
 });

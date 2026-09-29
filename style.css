@@ -23,6 +23,7 @@ body {
 #mood-gif {
   width: 100%;
   height: 100%;
+  transition: opacity 0.2s ease;
   object-fit: cover;
   image-rendering: pixelated;
   image-rendering: crisp-edges;
@@ -53,10 +54,12 @@ body {
 #mood-buttons {
   display: flex;
   gap: 12px;
+  cursor: pointer;
 }
 
 #play-pause-btn {
   margin-top: 14px;
+  cursor: pointer;
 }
 #interface h1 {
   font-family: "Pixelify Sans", sans-serif;
@@ -82,6 +85,7 @@ body {
   color: white;
   font-family: "Pixelify Sans", sans-serif;
   font-size: 18px;
+  cursor: pointer;
 }
 #play-pause-btn {
   margin-top: 16px;
@@ -96,17 +100,20 @@ body {
   color: #0b1630;
   font-family: "Pixelify Sans", sans-serif;
   font-size: 20px;
+  cursor: pointer;
 }
 .mood-btn:hover {
   transition: 0.2s;
   background-color: #6db1ff;
   border-color: white;
   transform: translateY(-2px);
+  cursor: pointer;
 }
 #play-pause-btn:hover {
   transition: 0.2s;
   background-color: #72b4ff;
   transform: translateY(-2px);
+  cursor: pointer;
 }
 .mood-btn.active {
   outline: 2px solid white;
@@ -114,6 +121,7 @@ body {
   transition: 0.2s;
   background-color: #6db1ff;
   transform: translateY(-4px);
+  cursor: pointer;
 }
 #yt-player {
   position: absolute;
@@ -125,23 +133,23 @@ body {
 }
 @media (max-width: 600px) {
   #interface {
-    padding: 20px 10px 25px;
+    padding: 50px 10px 25px;
   }
 
   #interface h1 {
-    font-size: 22px;
+    font-size: 40px;
     letter-spacing: 1px;
   }
 
   #interface p {
     margin-top: 5px;
-    font-size: 11px;
+    font-size: 20px;
   }
 
   #mood-buttons {
     flex-wrap: wrap;
     justify-content: center;
-    max-width: 220px;
+    max-width: 430px;
     gap: 8px;
   }
   .mood-btn.active {
@@ -153,13 +161,16 @@ body {
   }
   .mood-btn {
     width: 100px;
-    padding: 8px 10px;
-    font-size: 14px;
+    padding: 15px 35px;
+    font-size: 15px;
+    text-align: center;
+    justify-content: center;
   }
 
   #play-pause-btn {
-    width: 200px;
+    width: 300px;
     padding: 10px;
-    font-size: 16px;
+    margin-bottom: 50px;
+    font-size: 20px;
   }
 }
