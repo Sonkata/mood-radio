@@ -7,7 +7,46 @@ function selectMood(moodName) {
   moodButtons.forEach((btn) => {
     btn.classList.toggle("active", btn.dataset.mood === moodName);
   });
+  if (playerReady) {
+    player.loadVideoById(moods[moodName].videoId);
+    isPlaying = true;
+    playPauseBtn.textContent = "⏸ Pause";
+  }
 }
 moodButtons.forEach((btn) => {
   btn.addEventListener("click", () => selectMood(btn.dataset.mood));
+});
+let player;
+let playerReady = false;
+
+function onYouTubeIframeAPIReady() {
+  player = new YT.Player("yt-player", {
+    height: "1",
+    width: "1",
+    videoId: "CLeZyIID9Bo",
+    playerVars: {
+      autoplay: 0,
+      controls: 0,
+    },
+    events: {
+      onReady: () => {
+        playerReady = true;
+      },
+    },
+  });
+}
+const playPauseBtn = document.getElementById("play-pause-btn");
+let isPlaying = false;
+
+playPauseBtn.addEventListener("click", () => {
+  if (!playerReady) return; // guard: player might not be ready yet
+
+  if (isPlaying) {
+    player.pauseVideo();
+    playPauseBtn.textContent = "▶ Play";
+  } else {
+    player.playVideo();
+    playPauseBtn.textContent = "⏸ Pause";
+  }
+  isPlaying = !isPlaying;
 });
