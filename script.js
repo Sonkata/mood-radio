@@ -10,15 +10,7 @@ function selectMood(moodName) {
   moodButtons.forEach((btn) => {
     btn.classList.toggle("active", btn.dataset.mood === moodName);
   });
-  if (playerReady) {
-    const randomIndex = Math.floor(
-      Math.random() * moods[moodName].videoId.length,
-    );
-    player.loadVideoById(moods[moodName].videoId[randomIndex]);
-
-    isPlaying = true;
-    playPauseBtn.textContent = "⏸ Pause";
-  }
+  searchMoodTrack(moodName);
   image.style.opacity = 0;
   setTimeout(() => {
     image.src = moods[moodName].gif;
@@ -66,16 +58,7 @@ playPauseBtn.addEventListener("click", () => {
 const shuffleBtn = document.getElementById("shuffle-btn");
 
 shuffleBtn.addEventListener("click", () => {
-  if (!playerReady) return;
-
-  const randomIndex = Math.floor(
-    Math.random() * moods[currentMood].videoId.length,
-  );
-
-  player.loadVideoById(moods[currentMood].videoId[randomIndex]);
-
-  isPlaying = true;
-  playPauseBtn.textContent = "⏸ Pause";
+  searchMoodTrack(currentMood);
 });
 document.getElementById("volume").addEventListener("input", (e) => {
   if (playerReady) player.setVolume(Number(e.target.value));
@@ -92,3 +75,66 @@ function animateBars() {
 animateBars();
 
 setInterval(animateBars, 180);
+
+// MOOD-11: LIVE YOUTUBE SEARCH
+const API_KEY = "AIzaSyAPc6X8OOcGl8ZDIhlYH58eKPR_5qizTnU";
+const moodQueries = {
+  chill: "chill lofi relaxing music",
+  hype: "energetic synthwave music mix",
+  sad: "sad ambient piano music",
+  focus: "deep focus study music",
+};
+
+// Prevent older search results from replacing newer ones.
+let searchRequestId = 0;
+
+function searchMoodTrack(moodName) {
+  if (!playerReady) return;
+
+  const query = moodQueries[moodName];
+  if (!query) return;
+
+  const requestId = ++searchRequestId;
+
+  fetch(
+    `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${encodeURIComponent(query)}&type=video&videoEmbeddable=true&maxResults=10&key=${API_KEY}`,
+  )
+    .then((res) => {
+      if (!res.ok) {
+        throw new Error(`YouTube API Error: ${res.status}`);
+      }
+
+      return res.json();
+    })
+    .then((data) => {
+      // Ignore outdated search results.
+      if (requestId !== searchRequestId || currentMood !== moodName) {
+        return;
+      }
+
+      const videos = (data.items || []).filter(
+        (item) => item.id && item.id.videoId,
+      );
+
+      if (videos.length === 0) {
+        console.log("No videos found.");
+        return;
+      }
+
+      // Pick a random video from the search results.
+      const randomIndex = Math.floor(Math.random() * videos.length);
+
+      const videoId = videos[randomIndex].id.videoId;
+
+      // Load and play the video.
+      player.loadVideoById(videoId);
+
+      isPlaying = true;
+      playPauseBtn.textContent = "⏸ Pause";
+
+      console.log("Now playing:", videos[randomIndex].snippet.title);
+    })
+    .catch((error) => {
+      console.error("Mood Radio Search Error:", error);
+    });
+}
