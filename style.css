@@ -56,9 +56,38 @@ body {
   gap: 12px;
   cursor: pointer;
 }
-
+#volume {
+  margin-top: 14px;
+  width: 180px;
+  height: 6px;
+  background-color: #65708a;
+  border-radius: 3px;
+  outline: none;
+  cursor: pointer;
+}
 #play-pause-btn {
   margin-top: 14px;
+  cursor: pointer;
+}
+#shuffle-btn {
+  margin-top: 16px;
+  width: 180px;
+  padding-top: 14px;
+  padding-right: 20px;
+  padding-bottom: 14px;
+  padding-left: 20px;
+  border: none;
+  border-radius: 25px;
+  background-color: #69afff;
+  color: #0b1630;
+  font-family: "Pixelify Sans", sans-serif;
+  font-size: 20px;
+  cursor: pointer;
+}
+#shuffle-btn:hover {
+  transition: 0.2s;
+  background-color: #72b4ff;
+  transform: translateY(-2px);
   cursor: pointer;
 }
 #interface h1 {

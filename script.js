@@ -8,7 +8,11 @@ function selectMood(moodName) {
     btn.classList.toggle("active", btn.dataset.mood === moodName);
   });
   if (playerReady) {
-    player.loadVideoById(moods[moodName].videoId);
+    const randomIndex = Math.floor(
+      Math.random() * moods[moodName].videoId.length,
+    );
+    player.loadVideoById(moods[moodName].videoId[randomIndex]);
+
     isPlaying = true;
     playPauseBtn.textContent = "⏸ Pause";
   }
@@ -55,4 +59,21 @@ playPauseBtn.addEventListener("click", () => {
     playPauseBtn.textContent = "⏸ Pause";
   }
   isPlaying = !isPlaying;
+});
+const shuffleBtn = document.getElementById("shuffle-btn");
+
+shuffleBtn.addEventListener("click", () => {
+  if (!playerReady) return;
+
+  const randomIndex = Math.floor(
+    Math.random() * moods[currentMood].videoId.length,
+  );
+
+  player.loadVideoById(moods[currentMood].videoId[randomIndex]);
+
+  isPlaying = true;
+  playPauseBtn.textContent = "⏸ Pause";
+});
+document.getElementById("volume").addEventListener("input", (e) => {
+  if (playerReady) player.setVolume(Number(e.target.value));
 });
