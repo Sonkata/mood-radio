@@ -90,6 +90,17 @@ body {
   transform: translateY(-2px);
   cursor: pointer;
 }
+#audio-lines {
+  display: flex;
+  gap: 4px;
+  align-items: flex-end;
+  height: 40px;
+}
+.bar {
+  width: 5px;
+  height: 10px;
+  background-color: #69afff;
+}
 #interface h1 {
   font-family: "Pixelify Sans", sans-serif;
   font-size: 42px;

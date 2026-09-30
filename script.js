@@ -1,9 +1,12 @@
 const image = document.getElementById("mood-gif");
 const moodButtons = document.querySelectorAll(".mood-btn");
-let currentMood = "chill";
+const savedMood = localStorage.getItem("lastMood") || "chill";
+let currentMood = savedMood;
 function selectMood(moodName) {
   currentMood = moodName;
   image.src = moods[currentMood].gif;
+  localStorage.setItem("lastMood", moodName);
+
   moodButtons.forEach((btn) => {
     btn.classList.toggle("active", btn.dataset.mood === moodName);
   });
@@ -77,3 +80,15 @@ shuffleBtn.addEventListener("click", () => {
 document.getElementById("volume").addEventListener("input", (e) => {
   if (playerReady) player.setVolume(Number(e.target.value));
 });
+const bars = document.querySelectorAll(".bar");
+function animateBars() {
+  bars.forEach((bar) => {
+    const randomHeight = isPlaying ? Math.floor(Math.random() * 31) + 10 : 5;
+
+    bar.style.height = `${randomHeight}px`;
+  });
+}
+
+animateBars();
+
+setInterval(animateBars, 180);
